@@ -3,6 +3,9 @@ using System.Collections;
 
 public static class Utils {
 
+	/// <summary>
+	/// Draw a rectangle on the screen for debugging purposes
+	/// </summary>
 	public static void DebugRect(Vector3 center, Vector3 size){
 		size = new Vector3(size.x, size.y, 0);
 		Vector3 ul = center - size/2;

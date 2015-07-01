@@ -5,6 +5,10 @@ using System.Collections;
 /// Used for physics. GameObjects with this script will automatically check for collisions
 /// and be moved when pushed, based on their mass. The object should have either a CircleCollider2D 
 /// or a BoxCollider2D on it. 
+/// 
+/// It may look like we're duplicating some of Unity's functionality here, but it's necessary because
+/// Unity only updates its Physics on a fixed timestep, so if we want to check for collisions whenever 
+/// we want, we need to calculate a bunch of stuff ourselves.
 /// </summary>
 public class OurCollider : MonoBehaviour {
 

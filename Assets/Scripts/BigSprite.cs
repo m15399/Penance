@@ -60,6 +60,7 @@ public class BigSprite : MonoBehaviour {
 				sr.sortingOrder = orderInLayer;
 
 				// need to grab the width and height after creating the first sprite
+				// because it can change based on the sprite's max size setting
 				if(i == 0){
 					Renderer renderer = sprite.GetComponent<Renderer>();
 					spriteWidth = renderer.bounds.size.x;
