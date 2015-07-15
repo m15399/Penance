@@ -46,16 +46,16 @@ public class OurCollider : MonoBehaviour {
 	}
 
 
-	static float lastTime = -1;
+	static float lastCurrCollidersTime = -1;
 	static OurCollider[] currColliders = null;
 	/// <summary>
 	/// Gets all instances of OurCollider that are active on the current frame
 	/// </summary>
-	static OurCollider[] collidersForFrame {
+	public static OurCollider[] collidersForFrame {
 		get {
-			if(Time.time != lastTime){
+			if(Time.time != lastCurrCollidersTime){
 				currColliders = FindObjectsOfType<OurCollider>();
-				lastTime = Time.time;
+				lastCurrCollidersTime = Time.time;
 			}
 			return currColliders;
 		}
@@ -125,6 +125,7 @@ public class OurCollider : MonoBehaviour {
 	[Tooltip("Immoveable objects cannot be pushed. Used for walls, buildings, etc")]
 	public bool immoveable = false;
 
+
 	bool IsCollidingWith (OurCollider other){
 
 		float r1 = boundingRadius, r2 = other.boundingRadius;
@@ -183,7 +184,7 @@ public class OurCollider : MonoBehaviour {
 	}
 
 
-	void ResolveCollision (OurCollider other){ 
+	public bool ResolveCollision (OurCollider other){ 
 
 		if(IsCollidingWith(other)){
 
@@ -191,7 +192,7 @@ public class OurCollider : MonoBehaviour {
 			float pushAmt = 0;
 			Vector3 pushDir = new Vector3();
 
-			// igure out the collision type and resolve it
+			// figure out the collision type and check it
 
 			if(boxCollider != null){ // we are a box
 			
@@ -235,20 +236,9 @@ public class OurCollider : MonoBehaviour {
 			transform.position += pushDir * pushAmt * ourAmt;
 			other.transform.position -= pushDir * pushAmt * otherAmt; 
 
+			return true;
 		}
+		return false; // did not collide
 	}
 
-	void LateUpdate(){
-
-		// Check collisions against all other colliders
-		OurCollider[] colliders = collidersForFrame;
-		int l = colliders.Length;
-
-		for(int i = 0; i < l; i++){
-			// skip ourself
-			if(colliders[i] != this){
-				ResolveCollision(colliders[i]);
-			}
-		}
-	}
 }
