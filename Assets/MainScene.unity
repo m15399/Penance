@@ -87,7 +87,7 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &342093357
+--- !u!4 &342093357 stripped
 Transform:
   m_PrefabParentObject: {fileID: 422432, guid: 0d3db10d57d494bf8a1b3b728486b84b, type: 2}
   m_PrefabInternal: {fileID: 2062933430}
