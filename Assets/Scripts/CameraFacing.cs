@@ -18,7 +18,7 @@ public class CameraFacing : MonoBehaviour
 			return;
 
 		// rotates the object relative to the camera
-		Vector3 targetPos = transform.position + Camera.main.transform.rotation * (reverseFace ? Vector3.forward : Vector3.back);
+		Vector3 targetPos = transform.position + Camera.main.transform.rotation * (reverseFace ? Vector3.back : Vector3.forward);
 		Vector3 targetOrientation = Camera.main.transform.rotation * Vector3.up;
 		transform.LookAt (targetPos, targetOrientation);
 
